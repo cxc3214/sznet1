@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sqlGroup name="integrity" >
+	<!--
+      <sql id="findClient">select * from Client order by ip</sql>
+      <sql id="delClient.byids">delete from Client where id in ({0}) </sql>
+      <sql id="findClient.pageSql"> select * {|} from Client</sql>
+      <sql id="findClient.byip"> select * from Client where ip = ? and id != ?</sql>
+      <sql id="findClient.bymac"> select * from Client where mac = ? and id != ?</sql>
+      
+      <sql id="findUser">select * from Users order by ip</sql>
+      <sql id="delUser.byids">delete from Users where id in ({0}) </sql>
+      <sql id="findUser.pageSql"> select * {|} from Users</sql>
+      <sql id="findUser.byName"> select * from Users where name = ? and id != ?</sql>
+      
+      <sql id="findModule.pageSql"> select * {|} from Module</sql>
+      -->
+       <sql id="findChange.pageSql"> select * {|} from HIPSLog</sql>
+       
+       <sql id="findPloy.pageSql"> select * {|} from StrategyTable</sql>
+       <!-- monitior -->
+       <!--IP地址-->
+       <sql id="monitor.findIp.pageSql"> select * {|} from ipaddresstable</sql>
+       <sql id="monitor.delIp.byids">delete from ipaddresstable where IpNo in ({0}) </sql>
+       <sql id="monitor.findIpAddress.byip">select * from ipaddresstable where IpStrategyContent = ? and ipno != ?</sql>
+       <sql id="monitor.findIpAddress.byname">select * from ipaddresstable where IpStrategyName = ? and ipno != ?</sql>
+       <!--MAC地址-->
+       <sql id="monitor.findMac.pageSql"> select * {|} from MacAddressTable</sql>
+       <sql id="monitor.delMac.byids">delete from macaddresstable where MacNo in ({0}) </sql>
+       <sql id="monitor.findMacAddress.bymac">select * from macaddresstable where MacStrategyContent = ? and MacNo != ?</sql>
+       <sql id="monitor.findMacAddress.byname">select * from macaddresstable where MacStrategyName = ? and MacNo != ?</sql>
+       <!--APP地址-->
+       <sql id="monitor.findApp.pageSql"> select * {|} from AppStrategyTable</sql>
+       <sql id="monitor.delApp.byids">delete from AppStrategyTable where AppNo in ({0}) </sql>
+       <sql id="monitor.findApp.byippath">select * from AppStrategyTable where AppStrategyName=? and AppIpAddress=? and AppFilePath = ?  and AppNo != ?</sql>
+	  <!--REG地址-->
+	   <sql id="monitor.findReg.pageSql"> select * {|} from regstrategytable</sql>
+       <sql id="monitor.delReg.byids">delete from regstrategytable where RegNo in ({0}) </sql>
+       <sql id="monitor.findReg.byippath">select * from regstrategytable where RegStrategyName=? and RegIpAddress=? and RegFilePath = ?  and RegNo != ?</sql>
+       
+       <!--EQU地址-->
+	   <sql id="monitor.findEqu.pageSql"> select * {|} from equipstrategytable</sql>
+       <sql id="monitor.delEqu.byids">delete from equipstrategytable where equipNo in ({0}) </sql>
+	  
+</sqlGroup>

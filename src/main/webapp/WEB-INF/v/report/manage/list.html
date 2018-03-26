@@ -1,0 +1,44 @@
+<@c.html>
+	<@c.head title="报告管理">
+	<script src="${ctx}/inc/lib/jquery-extensions/jeasyui-extensions/jeasyui.extensions.js" type="text/javascript"></script>
+    <script src="${ctx}/inc/lib/jquery-extensions/jeasyui-extensions/jeasyui.extensions.validatebox.js" type="text/javascript"></script>
+	<script src="${ctx}/inc/lib/jquery-extensions/jeasyui-extensions/jeasyui.extensions.form.js" type="text/javascript"></script>
+	<script src="${ctx}/inc/project/report/1/list.js" type="text/javascript"></script>
+	</@c.head>
+	<@c.body>
+	<div class="easyui-panel" title="报告管理" data-options="fit:true,border:false">
+		<div class="easyui-layout" data-options="fit:true">        
+	        <div data-options="region:'center',border:false">
+	        	<div class="easyui-layout" data-options="fit:true,border:false">
+					<div data-options="region:'center',border:false">
+			        	<div id="querytoolbar">
+			        		<form class="form-inline" id="searchform" role="form">
+			        		  <div class="form-group">
+							    <label class=""  for="c-name">内容</label>
+							    <@c.forminput id="c-name" name="name" required="false" placeholder="输入内容" />
+							  </div>							  
+							  <button id="btnsearch" type="button" class="btn btn-info btn-sm">
+							 	<span class="glyphicon glyphicon-search"></span>  
+							  查询</button>
+			        		</form>			        	
+			        	</div>
+			        	<table id="datagrid" 
+					            data-options="fit:true,singleSelect:true,multiSort:true,border:false,url:'${ctx}/integrity/change/getChange',method:'post'">
+					        <thead>
+					            <tr>
+					                <!-- <th data-options="field:'ck',checkbox:true"></th> -->
+					                <th data-options="field:'loghostip',width:90,halign:'center',align:'center'">IP</th>
+					                <th data-options="field:'aaa',width:160,halign:'center',align:'center',sortable:true">客户端名称</th>
+					                <th data-options="field:'logstyle',width:80,halign:'center',align:'center',sortable:true">操作类型</th>
+					                <th data-options="field:'logcontent',width:320,halign:'center'">目标内容</th>
+					                <th data-options="field:'logtime',width:140,halign:'center',align:'center',sortable:true">操作时间</th>
+					            </tr>
+					        </thead>
+					    </table>   	
+			        </div>
+				</div>
+	        </div>
+	    </div>
+    </div>
+	</@c.body >
+</@c.html>

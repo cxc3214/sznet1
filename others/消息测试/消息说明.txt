@@ -1,0 +1,28 @@
+4667
+
+说明：
+
+接受数据包
+包头结构
+
+LPINTER_PROTO_HEAD
+
+typedef struct _INTER_PROTO_HEAD
+{
+	DWORD dwDataLen;     // 数据长度
+	DWORD dwProtoType;   // 数据类型  请求资源 代理模式 操作请求
+	DWORD dwClientAddr;  // 客户端地址
+	DWORD dwCommandId;   // 转发的COMMANDID/Notify的通知类型123x
+}INTER_PROTO_HEAD,*LPINTER_PROTO_HEAD;
+
+
+数据包先取HEAD信息，如dwDataLen=0 则数据包接受完成
+如>0 接受dwDataLen 的数据包，转为dwCommandId 对应的结构
+
+
+
+
+
+
+
+

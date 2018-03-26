@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sqlGroup name="system" >
+      <sql id="findClient">select * from Client order by ip</sql>
+      <sql id="findClient.server">select * from Client where type = 0  order by ip</sql>
+      <sql id="delClient.byids">delete from Client where id in ({0}) </sql>
+      <sql id="findClient.pageSql"> select * {|} from Client</sql>
+      <sql id="findClient.byip">select * from Client where ip = ? and id != ?</sql>
+      <sql id="findClient.bymac"> select * from Client where mac = ? and id != ?</sql>
+      
+      <sql id="findUser">select * from Users order by ip</sql>
+      <sql id="delUser.byids">delete from Users where id in ({0}) </sql>
+      <sql id="findUser.pageSql"> select * {|} from Users</sql>
+      <sql id="findUser.byName"> select * from Users where name = ? and id != ?</sql>
+      
+      <sql id="findModule.pageSql"> select * {|} from Module</sql>
+      
+</sqlGroup>

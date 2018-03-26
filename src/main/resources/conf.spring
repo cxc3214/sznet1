@@ -1,0 +1,47 @@
+devMode = true
+[db]
+jdbcurl = jdbc:mysql://127.0.0.1/integrityguard?characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull
+user = root
+password =
+driver = com.mysql.jdbc.Driver
+
+[message]
+host  = 127.0.0.1
+port  = 4667
+
+[server]
+commandport=4590
+dataport=4578
+exitpwd=1
+
+[search<system.authorize>]
+name  = (name like '%{@value}%' or ip like '%{@value}%')
+
+[search<system.user>]
+name  = name like '%{@value}%'
+
+[search<system.module>]
+name  = (nameid like '%{@value}%' or licensekey like '%{@value}%')
+
+
+[search<integrity.change>]
+name  = (LogContent like '%{@value}%')
+
+[search<integrity.ploy>]
+name  = (StrategyDescriptor like '%{@value}%')
+
+[search<integrity.monitor.ip>]
+name  = (ipstrategyname like '%{@value}%')
+
+
+[search<integrity.monitor.mac>]
+name  = (MacStrategyName like '%{@value}%')
+
+[search<integrity.monitor.app>]
+name  = (AppStrategyName like '%{@value}%')
+
+[search<integrity.monitor.reg>]
+name  = (RegStrategyName like '%{@value}%')
+
+[search<integrity.monitor.equ>]
+name  = (EquipStrategyName like '%{@value}%')

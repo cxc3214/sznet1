@@ -1,0 +1,76 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<base target="middle">
+<!-- css styles -->
+<style type="text/css">
+				td,p,li {font-size:12px;font-family: 宋体;}
+				A:link {text-decoration:none;color:#818282;}
+				A:visited {text-decoration:none;color:#818282;}
+				A:active {text-decoration:none;color:#086CC6;}
+				A:hover {text-decoration:none;color:#086CC6;}
+</style>
+<!-- end css styles -->
+<script src="ReportTpl.js" language="javascript" >
+</script>
+<script language="javascript">
+function onInit()
+{
+        var strALL=strTpl ;
+
+	
+	var sessionid =DataFileid ;
+
+	var fullString;
+	var nPos1,subStrArray
+	
+	
+
+	fullString = "\<p align=\"center\"\>" ;
+	fullString = fullString + "\<a target=\"middle\" href=\"ReportInfo.html\"\>报告信息\</a\>\<font color=\"#818282\"\>|\</font\>"; 
+	
+
+	
+	nPos1 = strALL.indexOf("HOSTRISKLEVELPIEALL:")
+	subStrArray = strALL.substring(nPos1+20,nPos1+21)
+	
+
+    if(subStrArray > 1)
+	{
+		fullString = fullString + "\<a target=\"middle\" href=\"ReportContent.html\"\>报告内容</a\>\<font color=\"#818282\"\>|\</font\>"; 
+	}
+	
+	
+	
+	nPos1 = strALL.indexOf("HOSTDETAILLISTALL:")
+	subStrArray = strALL.substring(nPos1+"HOSTDETAILLISTALL:".length ,nPos1+"HOSTDETAILLISTALL:".length +1)
+	
+		
+	titleBarText.innerHTML = fullString;
+}
+
+</script>
+
+</head>
+<base target="middle">
+
+<body topmargin="0" leftmargin="0" rightmargin="0" bottommargin="0" marginwidth="0" marginheight="0" onLoad="onInit()" oncontextmenu="return false">
+
+	<table border="0" width="100%" id="table1" height="86" background="img/01title_bg.gif" cellspacing="0" cellpadding="0">
+		<tr>
+			<td height="59" colspan="3">
+			<p align="center">
+			<img border="0" src="img/01title_te_te.GIF" width="429" height="59"></td>
+		</tr>
+		<tr>
+			<td  background="img/02bg.gif" height="27" width="1%">
+				<p align="right">　
+			</td>
+			<td  background="img/02bg.gif" height="27" width="98%" id="titleBarText">
+			</td>
+			<td width="1%" background="img/02bg.gif" height="27">
+			</td>
+		</tr>
+	</table>
+</body>
+</html>

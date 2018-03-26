@@ -1,0 +1,3 @@
+var DataFileid="1245186"; 
+var SecEResult=""; 
+var strTpl="{主机扫描报告模板}[HOSTRISKLEVELPIE]HOSTRISKLEVELPIEALL:3@主机安全状态级别分布统计$;[/HOSTRISKLEVELPIE][HOSTLIST]HOSTLISTALL:3@主机扫描统计列表$;Sort:1@主机扫描统计列表-排序方式(1-IP;2-风险分值;)$;[/HOSTLIST][HOSTDETAILLIST]HOSTDETAILLISTALL:3@主机扫描结果详细列表$;[/HOSTDETAILLIST][HOSTVULNDETAILLIST]HOSTVULNDETAILLISTALL:3@主机扫描漏洞详细列表$;VulnCode:1@漏洞列表-漏洞编号$;VulnClass:1@漏洞列表-漏洞分类$;RiskLevel:1@漏洞列表-危险级别$;OS:1@漏洞列表-影响平台$;CVSSScore:1@漏洞列表-CVSS分值$;CVE:1@漏洞列表-CVE编号$;CNCVE:1@漏洞列表-CNCVE编号$;DetailDesc:1@漏洞列表-详细描述$;Suggestion:1@漏洞列表-修补建议$;ReferenceWebSite:1@漏洞列表-参考网址$;[/HOSTVULNDETAILLIST]"

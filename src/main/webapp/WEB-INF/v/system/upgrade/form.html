@@ -1,0 +1,48 @@
+<@c.html>
+	<@c.head title="授权管理">
+	<script src="${ctx}/inc/lib/jquery-extensions/jeasyui-extensions/jeasyui.extensions.js" type="text/javascript"></script>
+    <script src="${ctx}/inc/lib/jquery-extensions/jeasyui-extensions/jeasyui.extensions.validatebox.js" type="text/javascript"></script>
+	<script src="${ctx}/inc/lib/jquery-extensions/jeasyui-extensions/jeasyui.extensions.form.js" type="text/javascript"></script>
+	<script src="${ctx}/inc/project/system/6/form.js" type="text/javascript"></script>
+	</@c.head>
+	<@c.body>
+	<div class="easyui-panel" title="升级管理" data-options="fit:true,border:false">
+		<div class="easyui-layout" data-options="fit:true">        
+	        <div data-options="region:'center',border:false">
+	        	<div class="easyui-layout" data-options="fit:true,border:false">
+	        		<!-- right form -->
+		        	<div data-options="region:'north'" style="height:40px;padding:5px;">
+	        			<div class="btn-group btn-group-sm">
+						  	<button id="btnstart" id="btn-save" type="button" class="btn btn-default">
+						 	<span class="glyphicon glyphicon-play"></span> 
+						  开始升级</button>
+						</div>
+		        	</div>
+					<div data-options="region:'center',border:false">
+			        		<div class="container-fluid" style="padding:10px">
+				        		<form id="saveform" role="form" method="post" class="form-horizontal col-md-9 col-md-offset-1" role="form">
+			        		 			<div class="alert alert-info">当前版本：v...</div>
+			        		 			<div class="radio">
+										  <label>
+										    <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
+										  联网升级
+										  </label>
+										</div>
+										<div class="radio">
+										  <label>
+										    <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
+										    离线升级										  
+										  <input type="file" id="exampleInputFile">
+										   <p class="help-block">请选择离线文件.</p>	
+ 										</label>
+										</div>  
+									    
+				        		</form>
+			        		</div>	        	
+			        </div>
+				</div>
+	        </div>
+	    </div>
+    </div>
+	</@c.body >
+</@c.html>

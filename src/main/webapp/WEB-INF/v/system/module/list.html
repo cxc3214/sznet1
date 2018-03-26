@@ -1,0 +1,42 @@
+<@c.html>
+	<@c.head title="模块管理">
+	<script src="${ctx}/inc/lib/jquery-extensions/jeasyui-extensions/jeasyui.extensions.js" type="text/javascript"></script>
+    <script src="${ctx}/inc/lib/jquery-extensions/jeasyui-extensions/jeasyui.extensions.validatebox.js" type="text/javascript"></script>
+	<script src="${ctx}/inc/lib/jquery-extensions/jeasyui-extensions/jeasyui.extensions.form.js" type="text/javascript"></script>
+	<script src="${ctx}/inc/project/system/4/list.js" type="text/javascript"></script>
+	</@c.head>
+	<@c.body>
+	<div class="easyui-panel" title="模块管理" data-options="fit:true,border:false">
+		<div class="easyui-layout" data-options="fit:true">        
+	        <div data-options="region:'center',border:false">
+	        	<div class="easyui-layout" data-options="fit:true,border:false">
+	        		<!-- right form -->
+		        	<div data-options="region:'north'" style="height:40px;padding:5px;">
+	        			<div class="btn-group btn-group-sm">
+						  <button id="btnactive" type="button" class="btn btn-default">
+						 	<span class="glyphicon glyphicon-transfer"></span> 
+						 在线激活</button>						  	
+						</div>
+		        	</div>
+					<div data-options="region:'center',border:false">
+			        	<div id="querytoolbar">
+			        		<form class="form-inline" id="searchform" role="form">
+			        		  <div class="form-group">
+							    <label class=""  for="c-name">模块名称/授权对象</label>
+							    <@c.forminput id="c-name" name="name" required="false" placeholder="输入模块名称或授权对象" />
+							  </div>							  
+							  <button id="btnsearch" type="button" class="btn btn-info btn-sm">
+							 	<span class="glyphicon glyphicon-search"></span>  
+							  查询</button>
+			        		</form>
+			        	</div>
+			        	<table id="datagrid" title="授权列表" 
+					            data-options="fit:true,singleSelect:true,multiSort:true,border:false,url:'${ctx}/system/module/getModule',method:'post'">
+					    </table>   	
+			        </div>
+				</div>
+	        </div>
+	    </div>
+    </div>
+	</@c.body >
+</@c.html>

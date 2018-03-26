@@ -1,0 +1,60 @@
+<Strategy-Config>
+	<Information>
+		<StrategyType  Item="操作系统完整性监测策略"  Type =" 0" >
+			<Item  Name =" Windows操作系统完整性监测">
+				<Version  Name ="Windows 2000 Server完整性监测"       VersionID="1"/>
+				<Version  Name ="Windows 2003 Server完整性监测(32)"   VersionID="2"/>
+				<Version  Name ="Windows 2003 Server完整性监测(64)"   VersionID="3"/>
+				<Version  Name ="Windows 2008 Server完整性监测(32)"   VersionID="4"/>
+				<Version  Name ="Windows 2008 Server完整性监测(64)"   VersionID="5"/>
+			</Item>
+			<Item  Name ="Linux操作系统完整性监测">			</Item>
+			<Item  Name ="Unix操作系统完整性监测">
+			</Item>
+		</StrategyType>
+		<StrategyType  Item="数据库系统完整性监测策略"  Type ="1" >
+			<Item>
+				<Version  Name ="Oracle Data Access Components 10.0"  VersionID="1"/>
+				<Version  Name ="Microsoft SQL Server 2005"   VersionID="2"/>
+				<Version  Name ="Microsoft SQL Server 2008"   VersionID="3"/>
+			</Item>
+		</StrategyType>
+
+		<StrategyType  Item="Web服务器完整性监测策略"  Type ="2" >
+			<Item>
+				<Version  Name ="Internet Information Server 6.0"  VersionID="1"/>
+				<Version  Name ="Internet Information Server 7.0"   VersionID="2"/>
+				<Version  Name ="Weblogic Tuxedo Connecto"   VersionID="3"/>
+			</Item>
+		</StrategyType>
+
+
+		<StrategyType  Item="邮件服务器完整性监测策略"  Type ="3 " >
+			<Item>
+				<Version  Name ="Microsoft Exchange Server"  VersionID="1"/>
+				<Version  Name ="Lotus Domino/Notes"   VersionID="2"/>
+			</Item>
+		</StrategyType>
+		<StrategyType  Item="文件服务器完整性监测策略"  Type ="4 " >
+		</StrategyType>
+		<StrategyType  Item="网络设备/安全设备完整性监测策略"  Type =" 5" >
+			<Item>
+				<Version  Name ="思科网络设备完整性监测"  VersionID="1"/>
+				<Version  Name ="华为网络设备完整性监测"   VersionID="2"/>
+				<Version  Name ="华为3COM网络设备完整性监测"   VersionID="3"/>
+				<Version  Name ="锐捷网络设备完整性监测"   VersionID="4"/>
+				<Version  Name ="启明星辰安全设备完整性监测"   VersionID="5"/>
+				<Version  Name ="华为3COM网络设备完整性监测"   VersionID="6"/>
+				<Version  Name ="天融信安全设备完整性监测"   VersionID="7"/>
+			</Item>
+		</StrategyType>
+		<StrategyType  Item="自定义服务器完整性监测策略"  Type ="6 " >
+		</StrategyType>
+		<StrategyType  Item="自定义文件系统完整性监测策略"  Type ="7 " >
+		</StrategyType>
+		<StrategyType  Item="自定义网络设备完整性监测策略"  Type ="8 " >
+		</StrategyType>
+		<StrategyType  Item="自定义注册表完整性监测策略"  Type ="9 " >
+		</StrategyType>
+	</Information>
+</Strategy-Config>

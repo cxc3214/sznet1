@@ -1,0 +1,1384 @@
+<head>
+<base target="_self">
+<script src="RptTitle.js" language="javascript">
+</script>
+<script src="ReportTpl.js" language="javascript">
+</script>
+<script language="JavaScript">
+
+var sessionid ="data/"+DataFileid 
+   var strALL=strTpl 
+   
+   var strXsltFile =new Array() ;
+   var strHtmlFile =new Array() ;
+   
+<!--
+function FP_swapImg() {//v1.0
+ var doc=document,args=arguments,elm,n; doc.$imgSwaps=new Array(); for(n=2; n<args.length;
+ n+=2) { elm=FP_getObjectByID(args[n]); if(elm) { doc.$imgSwaps[doc.$imgSwaps.length]=elm;
+ elm.$src=elm.src; elm.src=args[n+1]; } }
+}
+
+function FP_getObjectByID(id,o) {//v1.0
+ var c,el,els,f,m,n; if(!o)o=document; if(o.getElementById) el=o.getElementById(id);
+ else if(o.layers) c=o.layers; else if(o.all) el=o.all[id]; if(el) return el;
+ if(o.id==id || o.name==id) return o; if(o.childNodes) c=o.childNodes; if(c)
+ for(n=0; n<c.length; n++) { el=FP_getObjectByID(id,c[n]); if(el) return el; }
+ f=o.forms; if(f) for(n=0; n<f.length; n++) { els=f[n].elements;
+ for(m=0; m<els.length; m++){ el=FP_getObjectByID(id,els[n]); if(el) return el; } }
+ return null;
+}
+
+function printPage()
+{
+	if (window.print)
+	{
+		 window.parent.middle.focus();
+  		 window.parent.middle.print(); 
+  	 } 
+}
+
+
+function getDataFileName( filename)
+{
+//根据当前页面还是导出全部页面获取XSLT文件、DATA数据文件、HTML文件。如果是当前页面，就获取当前页面文件，如果是导出这类文件则获取某一类报告文件 ；
+
+ var filearr= new Array() ;
+ 
+//  window.alert(filename) ;
+try
+ {  if (Number(DataFileid))
+   {
+     //为部门历史安全状态、任务扫描报告，加载5个文件，DeptTask.xml, TaskA.xml,TaskB.xml,TaskC.xml,TaskD.xml ,如:655361A.xml,655361B.xml,655361C.xml,655361D.xml,Dept655361.xml.
+     filearr.length=0 ;
+      filearr.push(""+DataFileid+"A.xml") ;
+         filearr.push(1) ; 
+         
+         
+         strXsltFile.length =0 ;
+         strHtmlFile.length =0 ;
+         if (filename.indexOf("Index")>=0)
+         {
+            //加载主机扫描文件XSLT文件及HTML文件；
+         
+         
+           if (filename.indexOf("IndexTask.html")>=0)
+          {
+          //主机扫描报告
+             
+              strHtmlFile.push("IndexTask.html");         
+              strHtmlFile.push("allHosts.html");
+              strHtmlFile.push("allhostvulnlist.html");
+              strHtmlFile.push("bottom.html");
+              strHtmlFile.push("hostList.html");             
+              strHtmlFile.push("hostPieChart.html");           
+              strHtmlFile.push("title.html");
+              strHtmlFile.push("ReportTpl.js");    
+               strHtmlFile.push("RptTitle.js"); 
+                 strHtmlFile.push("hostDesc.html");          
+              strHtmlFile.push("taskDescBak.html");
+                 
+               strXsltFile.push("hostDesc.xslt");  
+               strXsltFile.push("hostDetail.xslt");  
+               strXsltFile.push("hostList.xslt");     
+               strXsltFile.push("hostPieChart.xslt");  
+               strXsltFile.push("hostSortCVSSList.xslt");  
+               strXsltFile.push("hostVulnList.xslt");             
+              strXsltFile.push("servHList.xslt");  
+              strXsltFile.push("taskDesc.xslt");  
+              strXsltFile.push("TesthostVulnList.xslt");
+              strXsltFile.push("userHList.xslt");
+               
+              
+              
+           
+           }
+           
+           else if (filename.indexOf("IndexTaskVuln.html")>=0)  
+           
+           {
+           //漏洞扫描报告
+           
+           
+              strHtmlFile.push("IndexTaskVuln.html");  
+               strHtmlFile.push("bottom.html");             
+              strHtmlFile.push("ReportTpl.js");             
+              strHtmlFile.push("RptTitle.js");                 
+              strHtmlFile.push("hostDesc.html");
+              strHtmlFile.push("allhostvulnlist.html");             
+              strHtmlFile.push("osHost.html");             
+              strHtmlFile.push("osList.html");                 
+              strHtmlFile.push("taskDescBak.html");         
+              strHtmlFile.push("TaskVulnDchart.html");
+              strHtmlFile.push("TaskVulnHostDchart.html");
+              strHtmlFile.push("TaskVulntitle.html");
+              strHtmlFile.push("topNServ.html");             
+              strHtmlFile.push("topNVuln.html");           
+              strHtmlFile.push("vulnDchart.html");
+               strHtmlFile.push("vulnList.html");             
+              strHtmlFile.push("vulnPielist.html"); 
+            
+              
+                 strXsltFile.push("AllTaskVulnList.xslt");  
+               strXsltFile.push("hostDesc.xslt");  
+               strXsltFile.push("osHost.xslt");             
+              strXsltFile.push("osList.xslt");             
+              strXsltFile.push("taskDesc.xslt");    
+              strXsltFile.push("TaskVulnHostDChart.xslt");              
+              strXsltFile.push("topNServ.xslt");
+             strXsltFile.push("topNVuln.xslt");
+              strXsltFile.push("vulnDChart.xslt");             
+              strXsltFile.push("VulnList.xslt");             
+              strXsltFile.push("vulnPielist.xslt");    
+              
+                 strXsltFile.push("hostVulnList.xslt");    
+                  strXsltFile.push("servHList.xslt");  
+                   strXsltFile.push("userHList.xslt");  
+                    strXsltFile.push("vulnDChart.xslt");  
+                  
+              
+           }
+           
+            else if (filename.indexOf("IndexAllTask")>=0)
+           
+           {
+           //任务扫描全报告
+              strHtmlFile.push("IndexAllTask.html");  
+               strHtmlFile.push("bottom.html");             
+              strHtmlFile.push("ReportTpl.js");             
+              strHtmlFile.push("RptTitle.js");    
+              strHtmlFile.push("hostDesc.html");              
+              strHtmlFile.push("hostList.html");
+                 strHtmlFile.push("hostPieChart.html");
+                 
+              strHtmlFile.push("hostPieList.html");             
+              strHtmlFile.push("osHost.html");             
+              strHtmlFile.push("osList.html");                 
+              strHtmlFile.push("taskDescBak.html");         
+              //strHtmlFile.push("TaskVulnDchart.html");
+              strHtmlFile.push("TaskVulnHostDchart.html");
+              strHtmlFile.push("alltitle.html");
+              strHtmlFile.push("topNServ.html");             
+              strHtmlFile.push("topNVuln.html");           
+              strHtmlFile.push("vulnDchart.html");
+               strHtmlFile.push("vulnList.html");             
+              strHtmlFile.push("vulnPielist.html"); 
+              
+                 strXsltFile.push("AllTaskVulnList.xslt");  
+               strXsltFile.push("hostDesc.xslt");             
+              strXsltFile.push("hostList.xslt");             
+              strXsltFile.push("hostPieChart.xslt");    
+              strXsltFile.push("hostPieList.xslt");  
+                 strXsltFile.push("hostSortCVSSList.xslt");  
+               strXsltFile.push("osHost.xslt");             
+              strXsltFile.push("osList.xslt");             
+              strXsltFile.push("taskDesc.xslt");    
+              strXsltFile.push("TaskVulnHostDChart.xslt");              
+              strXsltFile.push("topNServ.xslt");
+               strXsltFile.push("topNVuln.xslt");                 
+                strXsltFile.push("userHList.xslt");                  
+                strXsltFile.push("servHList.xslt"); 
+                 strXsltFile.push("hostVulnList.xslt");
+              strXsltFile.push("vulnDChart.xslt");             
+              strXsltFile.push("VulnList.xslt");             
+              strXsltFile.push("vulnPielist.xslt");    
+           }
+           
+           
+             else if (filename.indexOf("IndexDeptHistory.html")>=0)
+           
+           {
+           
+           //部门扫描历史报告
+              strHtmlFile.push("IndexDeptHistory.html");  
+               strHtmlFile.push("bottom.html");             
+              strHtmlFile.push("ReportTpl.js");             
+              strHtmlFile.push("RptTitle.js");    
+              strHtmlFile.push("DeptHistoryDesc.html");              
+              strHtmlFile.push("DeptHistoryhostList.html");
+              strHtmlFile.push("DeptHistoryTaskDesc.html");                 
+              strHtmlFile.push("DeptHistorytitle.html");             
+              strHtmlFile.push("DeptTaskhostPieChart.html");             
+              strHtmlFile.push("testDepTasktvulnlist.html");                               
+              strHtmlFile.push("DepHistorytallHosts.html");      
+                strHtmlFile.push("hostDesc.html");        
+              
+              
+                strXsltFile.push("DeptHistoryDesc.xslt");  
+               strXsltFile.push("DeptHistoryhostVulnList.xslt");             
+              strXsltFile.push("DepthostVulnList.xslt");             
+              strXsltFile.push("DeptTaskhostList.xslt");    
+              strXsltFile.push("DeptTaskhostPieChart.xslt");              
+              strXsltFile.push("DeptTaskhostSortCVSSList.xslt");
+              strXsltFile.push("hostDesc.xslt");                 
+              strXsltFile.push("servHList.xslt");             
+              strXsltFile.push("taskDesc.xslt");             
+              strXsltFile.push("userHList.xslt");    
+                  strXsltFile.push("hostVulnList.xslt");            
+            
+             
+           }
+           
+         
+         
+         }
+         
+           else
+           {
+             //当前文件,把所有XSLT都加载该类的
+            //  window.alert (filename )
+               strHtmlFile.push(filename );  
+               strHtmlFile.push("hostDesc.html");             
+              strHtmlFile.push("ReportTpl.js");             
+              strHtmlFile.push("RptTitle.js");    
+              strHtmlFile.push("osHost.html");              
+              strHtmlFile.push("vulnPielist.html");
+             
+             
+//              strHtmlFile.push("DeptHistoryTaskDesc.html");                 
+//              strHtmlFile.push("DeptHistorytitle.html");             
+//              strHtmlFile.push("DeptTaskhostPieChart.html");             
+//              strHtmlFile.push("testDepTasktvulnlist.html");                               
+//              strHtmlFile.push("DepHistorytallHosts.html");      
+              
+              
+                  strXsltFile.push("AllTaskVulnList.xslt");  
+                   strXsltFile.push("DeptHistoryDesc.xslt");  
+               strXsltFile.push("DeptHistoryhostVulnList.xslt");             
+              strXsltFile.push("DepthostVulnList.xslt");             
+              strXsltFile.push("DeptTaskhostList.xslt");    
+              strXsltFile.push("DeptTaskhostPieChart.xslt");              
+              strXsltFile.push("DeptTaskhostSortCVSSList.xslt");
+               strXsltFile.push("hostDesc.xslt");  
+                   strXsltFile.push("hostDetail.xslt");             
+              strXsltFile.push("hostList.xslt");             
+              strXsltFile.push("hostPieChart.xslt");    
+              strXsltFile.push("hostPieList.xslt");  
+              strXsltFile.push("hostSortCVSSList.xslt");  
+              strXsltFile.push("hostVulnList.xslt");   
+               strXsltFile.push("osHost.xslt");             
+              strXsltFile.push("osList.xslt");   
+             strXsltFile.push("servHList.xslt");               
+              strXsltFile.push("taskDesc.xslt");  
+              strXsltFile.push("TaskVulnHostDChart.xslt");    
+              strXsltFile.push("TesthostVulnList.xslt");         
+              strXsltFile.push("topNServ.xslt");
+              strXsltFile.push("topNVuln.xslt");
+              strXsltFile.push("userHList.xslt");
+              strXsltFile.push("vulnDChart.xslt");             
+              strXsltFile.push("VulnList.xslt");             
+              strXsltFile.push("vulnPielist.xslt");    
+             
+           }
+         
+         
+         
+   }
+ 
+   }
+   
+   catch(ex)
+   {
+   
+   }
+  
+   
+   try
+   {
+   //部门最新安全状态报告 ，加载4个文件：Dept123A.xml,Dept123B.xml,Dept123C.xml,Dept123D.xml
+   
+  
+   if(DataFileid.indexOf("Dept")>=0 )
+   
+   {
+    //含有DEPT字符，且后续的能转化成数值 
+   // 
+    var numDept =Number(DataFileid.substr(DataFileid.indexOf("Dept")+1,DataFileid.length )) ;
+    
+      filearr.length=0 ;
+      filearr.push(DataFileid+"A.xml") ;
+      filearr.push(DataFileid+"B.xml") ;
+      filearr.push(DataFileid+"C.xml") ;
+      filearr.push(DataFileid+"D.xml") ;   
+      
+        
+       filearr.push(4) ; 
+       
+       
+         strXsltFile.length =0 ;
+         strHtmlFile.length =0 ;
+         if (filename.indexOf("IndexDeptNew")>=0)
+         {
+            //加载主机扫描文件XSLT文件及HTML文件；
+         
+         
+//           if (filename.indexOf("IndexTask")>=0)
+//          {
+          //部门最新安全状态报告
+         
+              strHtmlFile.push("IndexDeptNew.html");         
+              strHtmlFile.push("DeptDesc.html");
+                 strHtmlFile.push("bottom.html");   
+              strHtmlFile.push("DepthostList.html");
+              strHtmlFile.push("DepthostPieChart.html");
+              strHtmlFile.push("DeptNewallHosts.html");             
+              strHtmlFile.push("DeptNewOffLinehostList.html");           
+              strHtmlFile.push("DeptNewtitle.html");
+              strHtmlFile.push("ReportTpl.js");    
+              strHtmlFile.push("RptTitle.js");         
+              strHtmlFile.push("DeptNewvulnlist.html");  
+              strHtmlFile.push("DeptvulnList.html");
+            //  window.alert (DataFileid)
+                 strHtmlFile.push("hostDesc.html");        
+              
+                           
+              
+           
+           }
+           
+           else
+           
+           {
+              strHtmlFile.push(filename);                  
+                strHtmlFile.push("hostDesc.html"); 
+              strHtmlFile.push("ReportTpl.js");    
+              strHtmlFile.push("RptTitle.js");         
+             
+           
+           }
+           
+                         
+              
+               strXsltFile.push("DeptDesc.xslt");  
+               strXsltFile.push("DepthostList.xslt");  
+               strXsltFile.push("DepthostPieChart.xslt");     
+               strXsltFile.push("DepthostSortCVSSList.xslt");  
+               strXsltFile.push("DepthostVulnList.xslt");  
+               strXsltFile.push("DeptNewHostVuln.xslt"); 
+                strXsltFile.push("DeptNewoffLinehostList.xslt");  
+               strXsltFile.push("DeptVulnList.xslt");  
+               strXsltFile.push("hostDesc.xslt");    
+              strXsltFile.push("servHList.xslt");  
+              strXsltFile.push("servList.xslt");  
+              strXsltFile.push("userHList.xslt");
+               strXsltFile.push("hostVulnList.xslt");    
+              
+   
+   }
+   
+   }
+   
+    catch(ex)
+   
+   {
+   
+   }
+   
+   
+    try
+   {
+   //任务对比分析报告 ，加载1个文件：655361To655362.xml 
+   
+   if(DataFileid.indexOf("To")>=0 )
+   
+   {
+    //含有DEPT字符，且后续的能转化成数值
+    var numDept =Number(DataFileid.substr(DataFileid.indexOf("To")+1,DataFileid.length )) ;
+    
+    var numDpet2 =Number(DataFileid.substr(0,DataFileid.indexOf("To")-1 )) ;    
+      filearr.length=0 ;
+      filearr.push(DataFileid+".xml") ;    
+       filearr.push(1) ; 
+       
+         strXsltFile.length =0 ;
+         strHtmlFile.length =0 ;
+         if (filename.indexOf("IndexTaskContrast")>=0)
+         {
+            //加载主机扫描文件XSLT文件及HTML文件；
+         
+         
+//           if (filename.indexOf("IndexTask")>=0)
+//          {
+          //任务对比分析报告
+         
+              strHtmlFile.push("IndexTaskContrast.html");         
+              strHtmlFile.push("TaskContrastDesc.html");
+                 strHtmlFile.push("bottom.html");   
+              strHtmlFile.push("TaskContrastHost.html");
+              strHtmlFile.push("TaskContrastHostService.html");
+              strHtmlFile.push("TaskContrastHostUser.html");             
+              strHtmlFile.push("TaskContrastHostVuln.html");           
+              strHtmlFile.push("TaskContrastService.html");
+              strHtmlFile.push("ReportTpl.js");    
+              strHtmlFile.push("RptTitle.js");         
+              strHtmlFile.push("TaskContrastTitle.html");  
+              strHtmlFile.push("TaskContrastVuln.html");
+                           
+              
+           
+           }
+           
+           else
+           
+           {
+              strHtmlFile.push(filename);                  
+                      
+              
+              strHtmlFile.push("ReportTpl.js");    
+              strHtmlFile.push("RptTitle.js");         
+             
+           
+           }
+           
+                         
+              
+               strXsltFile.push("TaskContrastDesc.xslt");  
+               strXsltFile.push("TaskContrastHost.xslt");  
+               strXsltFile.push("TaskContrastHostService.xslt");     
+               strXsltFile.push("TaskContrastHostUser.xslt");  
+               strXsltFile.push("TaskContrastHostVuln.xslt");  
+               strXsltFile.push("TaskContrastService.xslt"); 
+                strXsltFile.push("TaskContrastVuln.xslt");  
+              
+               
+              
+   
+   }
+   
+   
+   
+   }
+   
+    catch(ex)
+   
+   {
+   
+   }
+   
+   
+   
+     try
+   {
+   //同一部门对比分析报告 ，加载1个文件：DDep123_655361To655362.xml
+   
+   if ((DataFileid.indexOf("Dept")>=0) && (DataFileid.indexOf("To")>=0) && (DataFileid.indexOf("_")>=0) )
+   
+   {
+    //含有DEPT字符，且后续的能转化成数值
+    var numDept =Number(DataFileid.substr(DataFileid.indexOf("To")+1,DataFileid.length )) ;
+    
+    var numDpet2 =Number(DataFileid.substr(0,DataFileid.indexOf("To")-1 )) ;    
+      filearr.length=0 ;
+      filearr.push(DataFileid+".xml") ;    
+    
+      filearr.push(1) ; 
+      
+        strXsltFile.length =0 ;
+         strHtmlFile.length =0 ;
+         if (filename.indexOf("IndexDeptTaskContrast")>=0)
+         {
+          
+          //同一部门对比分析报告
+         
+              strHtmlFile.push("IndexDeptTaskContrast.html");         
+              strHtmlFile.push("DeptTaskContrastDesc.html");
+                 strHtmlFile.push("bottom.html");   
+              strHtmlFile.push("DeptTaskContrastHost.html");
+              strHtmlFile.push("DeptTaskContrastHostService.html");
+              strHtmlFile.push("DeptTaskContrastHostUser.html");             
+              strHtmlFile.push("DeptTaskContrastHostVuln.html");           
+              strHtmlFile.push("DeptTaskContrastTitle.html");
+              strHtmlFile.push("ReportTpl.js");    
+              strHtmlFile.push("RptTitle.js");         
+            
+              
+           
+           }
+           
+           else
+           
+           {
+              strHtmlFile.push(filename);                  
+                      
+              
+              strHtmlFile.push("ReportTpl.js");    
+              strHtmlFile.push("RptTitle.js");         
+             
+           
+           }
+           
+               strXsltFile.push("DeptTaskContrastHost.xslt");  
+               strXsltFile.push("DeptTaskContrastHostService.xslt");  
+               strXsltFile.push("DeptTaskContrastHostVuln.xslt");     
+               strXsltFile.push("TaskContrastDesc.xslt");  
+               strXsltFile.push("TaskContrastHostUser.xslt");  
+              
+   
+   }
+      
+   }
+   
+   
+   
+    catch(ex)
+   
+   {
+   
+   }
+   
+   
+   
+   
+      try
+   {
+   //不同部门对比分析报告 ，加载1个文件：DDep123_655361To655362.xml
+   
+   if ((DataFileid.indexOf("DDept")>=0) && (DataFileid.indexOf("SDept")>=0) && (DataFileid.indexOf("To")>=0) )
+   
+   {
+    //含有DEPT字符，且后续的能转化成数值
+    var numDept =Number(DataFileid.substr(DataFileid.indexOf("To")+1,DataFileid.length )) ;
+    
+    var numDpet2 =Number(DataFileid.substr(0,DataFileid.indexOf("To")-1 )) ;    
+      
+      filearr.length=0 ;
+      filearr.push(DataFileid+".xml") ;    
+    
+      filearr.push(1) ; 
+      
+        strXsltFile.length =0 ;
+         strHtmlFile.length =0 ;
+         if (filename.indexOf("IndexNotDeptTaskContrast")>=0)
+         {
+          
+          //不同部门对比分析报告
+         
+              strHtmlFile.push("IndexNotDeptTaskContrast.html");
+              strHtmlFile.push("bottom.html");     
+              strHtmlFile.push("NotDeptTaskContrastDesc.html");     
+              strHtmlFile.push("NotDeptTaskContrastHost.html");              
+              strHtmlFile.push("NotDeptTaskContrastHostVuln.html");     
+              strHtmlFile.push("NotDeptTaskContrastTitle.html");
+              strHtmlFile.push("ReportTpl.js");    
+              strHtmlFile.push("RptTitle.js");         
+            
+              
+           
+           }
+           
+           else
+           
+           {
+              strHtmlFile.push(filename); 
+              
+              strHtmlFile.push("ReportTpl.js");    
+              strHtmlFile.push("RptTitle.js");         
+             
+           
+           }
+           
+               strXsltFile.push("NotDeptTaskContrastHost.xslt");  
+               strXsltFile.push("NotDeptTaskContrastHostVuln.xslt");                 
+                strXsltFile.push("NotDeptTaskContrastDesc.xslt"); 
+      
+      
+      
+      
+   }
+   
+   }
+   
+    catch(ex)
+   
+   {
+   
+   }
+   
+   
+        try
+   {
+   //任务趋势分析报告 ，加载1个文件：DDep123_655361To655362.xml
+   
+   if (DataFileid.indexOf("TaskTrend")>=0) 
+   
+   {
+    //含有DEPT字符，且后续的能转化成数值
+  //  var numDept =Number(DataFileid.substr(DataFileid.indexOf("To")+1,DataFileid.length )) ;
+    
+    //var numDpet2 =Number(DataFileid.substr(0,DataFileid.indexOf("To")-1 )) ;    
+    
+    
+     filearr.length=0 ;
+      filearr.push(DataFileid+".xml") ;    
+       filearr.push(1) ; 
+       
+       
+        strXsltFile.length =0 ;
+         strHtmlFile.length =0 ;
+         if (filename.indexOf("IndexTaskTrend")>=0)
+         {
+          
+          //任务趋势分析报告
+         
+              strHtmlFile.push("IndexTaskTrend.html");
+              strHtmlFile.push("bottom.html");           
+              strHtmlFile.push("DeptTaskTrend.html");              
+             // strHtmlFile.push("TaskTrendHost.html");   
+              
+              strHtmlFile.push("TaskTrendHostTrend.html");              
+              strHtmlFile.push("TaskTrendHostVuln.html");      
+              strHtmlFile.push("TaskTrendTitle.html");
+              strHtmlFile.push("ReportTpl.js");    
+              strHtmlFile.push("RptTitle.js");         
+            
+              
+           
+           }
+           
+           else
+           
+           {
+              strHtmlFile.push(filename);               
+              strHtmlFile.push("ReportTpl.js");    
+              strHtmlFile.push("RptTitle.js");         
+             
+           
+           }
+           
+               strXsltFile.push("DeptTaskTrend.xslt");  
+             //  strXsltFile.push("TaskTrendHost.xslt");
+                strXsltFile.push("TaskTrendHostTrend.xslt");  
+               strXsltFile.push("TaskTrendHostVuln.xslt");  
+   
+   }
+   
+   }
+   
+    catch(ex)
+   
+   {
+   
+   }
+   
+   
+   
+   
+   
+        try
+   {
+   //部门趋势分析报告 ，加载1个文件：DDep123_655361To655362.xml
+   
+   if ( (DataFileid.indexOf("Dept")>=0)  &&  (DataFileid.indexOf("Trend")>=0)  )
+   
+   {
+    //含有DEPT字符，且后续的能转化成数值
+  //  var numDept =Number(DataFileid.substr(DataFileid.indexOf("To")+1,DataFileid.length )) ;
+    
+    //var numDpet2 =Number(DataFileid.substr(0,DataFileid.indexOf("To")-1 )) ;       
+     filearr.length=0 ;
+      filearr.push(DataFileid+".xml") ;    
+       filearr.push(1) ; 
+       
+        strXsltFile.length =0 ;
+         strHtmlFile.length =0 ;
+         if (filename.indexOf("IndexDeptTaskTrend")>=0)
+         {
+          
+          //任务趋势分析报告
+         
+              strHtmlFile.push("IndexDeptTaskTrend.html");
+              strHtmlFile.push("bottom.html");           
+              strHtmlFile.push("DeptSubDeptTrend.html");              
+              strHtmlFile.push("DeptTaskCVSScoreTrend.html");   
+              
+              strHtmlFile.push("DeptTaskTrendDP.html");              
+              strHtmlFile.push("DeptTaskTrendDesc.html");      
+              strHtmlFile.push("DeptTaskTrendHostIP.html");
+              
+               strHtmlFile.push("DeptTaskTrendHostTrend.html");              
+              strHtmlFile.push("DeptTaskTrendHostVuln.html");      
+              strHtmlFile.push("DeptTaskTrendTitle.html");
+              
+              
+              strHtmlFile.push("ReportTpl.js");    
+              strHtmlFile.push("RptTitle.js");         
+            
+              
+           
+           }
+           
+           else
+           
+           {
+              strHtmlFile.push(filename);               
+              strHtmlFile.push("ReportTpl.js");    
+              strHtmlFile.push("RptTitle.js");         
+             
+           
+           }
+           
+              
+               strXsltFile.push("DeptTaskCVSScoreTrend.xslt");
+                strXsltFile.push("DeptTaskTrendDP.xslt");  
+                strXsltFile.push("DeptTaskTrendDesc.xslt");  
+               strXsltFile.push("DeptTaskTrendHostIP.xslt");  
+              strXsltFile.push("DeptTaskTrendHostTrend.xslt");
+                strXsltFile.push("DeptTaskTrendHostVuln.xslt");  
+               strXsltFile.push("SubDeptTaskTrend.xslt");    
+   
+   }
+   
+   }
+   
+    catch(ex)
+   
+   {
+   
+   }
+   
+   
+   return filearr ;
+   
+   
+   
+
+
+}
+
+
+
+function exportCurrent( isflag ) 
+{
+	
+	//showSending();
+
+	// 导出静态页面
+	
+
+    
+	window.parent.middle.focus();
+	var x; 
+	
+	var xframe =window.parent.document.location ;
+	
+	var urllocation =xframe.toString();
+	
+	var urlarray =urllocation.split('/') ;	
+	 
+	 //window.alert (urllocation);
+	
+	var indexfile =urlarray[urlarray.length -1] ;  //父页面文件 ；要获取本身文件名称
+	
+	
+	var currentfile =window.parent.middle.location.toString() ;  //当前页面的文件名称
+	
+	currentfile=currentfile.substr(currentfile.toString().lastIndexOf('/')+1)
+	 var arry = new Array();
+	
+	 //window.alert (currentfile) ;
+	
+	
+	if (isflag==1)
+	{
+	// window.alert (isflag)
+	    arry =getDataFileName(currentfile) ;
+	}
+	else
+	{
+	  // window.alert (isflag)
+		  arry =getDataFileName(indexfile) ;
+		
+		}
+		
+		//window.alert (strXsltFile[1]) ;
+		
+		//	window.alert (strHtmlFile[1]) ;
+		
+	
+	//window.alert (arry[arry.length-2]) ;  //必须数组的长度必须大于等于2
+	
+	// window.alert (arry.length) 
+	 
+//	 for (var i=0 ;i<arry.length ;i++ )
+//	 {
+//	  window.alert(arry[i]);
+//	 }
+	 
+	 
+   if (arry.length >=2 )
+   {
+	
+	
+	
+	
+	
+	
+	//window.alert (indexfile) ;
+	x = window.parent.middle.document.documentElement.innerHTML;
+	
+	var fso, f, ts, s;
+	var ForReading = 1, ForWriting = 2, ForAppending = 8;
+	var TristateUseDefault = -2, TristateTrue = -1, TristateFalse = 0;
+	fso = new ActiveXObject("Scripting.FileSystemObject");
+
+	// 建立文件夹
+	var pos3 = sessionid.indexOf("/");
+	var fsoFolder = new ActiveXObject("Scripting.FileSystemObject");
+	
+	
+		var strFolderPath = strPath +"report"; 
+//	var strFolderPath = strPath + sessionid.substr(pos3+1)+"\\report"; 
+     //  window.alert (strFolderPath)
+	var d;
+	d = new Date();
+		try
+		{ 	
+		    if(!fsoFolder.folderexists(strPath))
+			{
+			     var patharray = strPath.split("\\") ;
+			     var pathstr ="" ;
+			     for (var i=0 ;i<patharray.length ;i++)
+			     {
+			       if (i==0) 
+			       {
+			       pathstr=patharray[i]  ;
+			       }
+			       else
+			       {
+			         pathstr=pathstr +"\\"+patharray[i];
+			       } 
+			       if (!fsoFolder.folderexists(pathstr)) 
+			       
+			        {
+			          fsoFolder.CreateFolder(pathstr);
+			        }
+			       
+			       
+			     }
+			     
+				// fsoFolder.CreateFolder(strPath);
+			}
+			
+			
+		
+			if(fsoFolder.folderexists(strFolderPath))
+			{
+			     
+				fsoFolder.DeleteFolder(strFolderPath);
+				//strFolderPath = strFolderPath + "_" + Math.round(Math.random()* 1000);
+			}
+			 // window.alert (strFolderPath) ;
+			fsoFolder.CreateFolder(strFolderPath);
+		
+
+			var fol;
+			fol = new ActiveXObject("Scripting.FileSystemObject");
+					
+			// 得到报表配置文件路径
+			
+		
+			
+			var curtPath = unescape(document.location);
+			
+			var strlen = curtPath.length;
+			
+			
+			var tempDir = curtPath.substr(8, strlen-8);
+			var pos = tempDir.indexOf("report/");
+			var installPath = tempDir.substring(0,pos+7);
+			
+		//	window.alert (installPath)
+			
+				//window.alert(curtPath );
+				
+			for(;installPath.indexOf("/") != -1;)
+			{
+				installPath = installPath.replace("/","\\");
+			}
+			
+		
+			
+			var fullConfigPath = installPath + "\\" + "img";
+			var fullImgPath = strFolderPath + "\\" + "img"
+			
+			fol.CopyFolder(fullConfigPath, fullImgPath);
+		
+			fullConfigPath = installPath + "xslt";
+			fullImgPath = strFolderPath + "\\" + "xslt"
+			fol.CreateFolder(fullImgPath);
+		
+			 //  var fullXsltPath =strFolderPath + "\\" + "xslt"
+//			 	 var fb;
+//			    fb = new ActiveXObject("Scripting.FileSystemObject");
+
+//window.alert (strXsltFile[strXsltFile.length-1] )
+			 for (var i=0 ;i<=strXsltFile.length -1 ;i++)		 
+		 
+			
+			 {	//window.alert (fullConfigPath+"\\"+strXsltFile[i])
+			// window.alert (strXsltFile[i]);
+			   fol.CopyFile (fullConfigPath+"\\"+strXsltFile[i],fullImgPath+"\\"+strXsltFile[i]);
+			    
+			 }
+			 
+			 	
+		
+			fullConfigPath = installPath +"\\"+ "data";
+			fullImgPath = strFolderPath + "\\" + "data"
+			fol.CreateFolder(fullImgPath);
+		
+			 
+			 for (var i=0 ;i<=arry.length -2 ;i++)		 
+		
+			
+			 {	
+			 
+//			 window.alert (fullConfigPath+"\\"+arry[i])
+//			 
+//			 window.alert (fullImgPath+"\\"+arry[i])
+			   
+			   if (arry[arry.length -1] < 5 )
+			   {
+			   fol.CopyFile (fullConfigPath+"\\"+arry[i],fullImgPath+"\\"+arry[i]);
+			   }
+			   else
+			   {
+			   try
+			   { 
+			     
+			     fol.CopyFile (fullConfigPath+"\\"+arry[i],fullImgPath+"\\"+arry[i]);
+			   }
+			   catch(ex )
+			   {
+			   //  alert(ex.message)
+			   }
+			   
+			   }
+			    
+			 }
+			 
+			   
+			  
+			
+			fullConfigPath = installPath +"\\" + "flex";
+			fullImgPath = strFolderPath + "\\" + "flex" 
+			
+			// window.alert(fullImgPath );
+			 fol.CreateFolder(fullImgPath);
+			fol.CopyFolder(fullConfigPath, fullImgPath);
+		
+//			var path1 = fullConfigPath  + "\\" + "graph";
+//			var path2 = fullImgPath + "\\" + "graph";
+
+//			fol.CopyFolder(path1, path2);
+
+        
+          fullConfigPath = installPath ; 
+			fullImgPath = strFolderPath +"\\" ;
+			
+			
+			 
+			 	 
+			 	  
+			 	   
+			 	 
+			 	 
+			 for (var j=0;j<=strHtmlFile.length -1 ;j++)
+			 { 
+			   //  window.alert( fullImgPath  +strHtmlFile[j])
+			 //	if (fol.FileExists(fullConfigPath + strHtmlFile[j]))
+			 	
+			 	{
+			 	 // window.alert ('该文件存在') 
+			 	 
+			 	 	 if ( j==0 )
+			 	  {
+			 	    fol.CopyFile (fullConfigPath + strHtmlFile[j],fullImgPath +"Index.html");
+			 	  
+			 	  }
+			 	  else 			 	 
+			 	  
+			 	  {
+			 	   fol.CopyFile (fullConfigPath + strHtmlFile[j],fullImgPath +strHtmlFile[j]);
+			 	  }
+			 	 
+			 	 
+			 
+			 	}
+			 	
+			  
+			 }
+			   
+        
+          fullConfigPath = installPath +"\\xslt\\graph"; 
+			fullImgPath = strFolderPath +"\\xslt\\graph" ;
+			
+           	 fol.CreateFolder(fullImgPath);
+			fol.CopyFolder(fullConfigPath, fullImgPath);
+			
+			var strFin = "报表已经成功导出到 " + strFolderPath + " 文件夹下。";
+			alert(strFin);
+			
+		}
+		catch(ex)
+		{
+			if(ex.number=-2146828212)
+			{
+			  alert("没有权限导出到设置的目录！可能的原因："+"\n"+"1.导出报告的目录中报告或文件夹可能已经打开！"+"\n" +"2.设置的导出报告目录不存在！")
+			  //alert("设置的导出报告目录‘"+"\n" +strPath+"\n"+"’不存在，请创建目录之后再导出报告！")
+			}
+			
+//			else if (ex.message="没有权限"){
+//			  alert("没有权限导出到设置的导出目录！"+"\n" +"可能的原因：1、导出报告的目录中报告或文件夹可能已经打开！"+"\n" +"请关闭该目录或文件再尝试导出报告！")
+//			  
+//			}
+			
+			else {
+			alert(ex.message) ;
+			}
+		}
+	
+
+	//showSendingFinish();
+	
+	
+	}
+	
+	else
+	{
+	  alert('JS文件中传入的参数DataFileid无效！') ;
+	}
+
+}
+
+//function exportCurrent()
+//{
+//	
+//	//showSending();
+
+//	// 导出静态页面
+//	
+
+//    
+//	window.parent.middle.focus();
+//	var x; 
+//	
+//	var xframe =window.parent.document.location ;
+//	
+//	var urllocation =xframe.toString();
+//	
+//	var urlarray =urllocation.split('/') ;	
+//	 
+//	//window.alert (urlarray[urlarray.length -1] );
+//	
+//	var indexfile =urlarray[urlarray.length -1] ;  //父页面文件 ；要获取本身文件名称
+//	
+//	
+//	var currentfile =window.parent.middle.location.toString() ;  //当前页面的文件名称
+//	
+//	
+//	
+//	
+//	window.alert (currentfile.substr(currentfile.toString().lastIndexOf('/')+1)) ;
+//	
+//	
+//	
+//	
+//		var arry =getDataFileName(currentfile) ;
+//	
+//	//window.alert (arry[arry.length-2]) ;  //必须数组的长度必须大于等于2
+//	
+//	
+//   if (arry.length>=2)
+//   {
+//	
+//	
+//	
+//	
+//	
+//	
+//	//window.alert (indexfile) ;
+//	x = window.parent.middle.document.documentElement.innerHTML;
+//	
+//	var fso, f, ts, s;
+//	var ForReading = 1, ForWriting = 2, ForAppending = 8;
+//	var TristateUseDefault = -2, TristateTrue = -1, TristateFalse = 0;
+//	fso = new ActiveXObject("Scripting.FileSystemObject");
+
+//	// 建立文件夹
+//	var pos3 = sessionid.indexOf("/");
+//	var fsoFolder = new ActiveXObject("Scripting.FileSystemObject");
+//	var strFolderPath = strPath + sessionid.substr(pos3+1); 
+
+//	var d;
+//	d = new Date();
+//		try
+//		{	
+//			if(fsoFolder.folderexists(strFolderPath))
+//			{
+//				//fsoFolder.DeleteFolder(strFolderPath);
+//				strFolderPath = strFolderPath + "_" + Math.round(Math.random()* 1000);
+//			}
+//			
+//			fsoFolder.CreateFolder(strFolderPath);
+//			
+//			var strFull = strFolderPath + "\\" + sessionid.substr(pos3+1) + strType;
+//					
+//			fso.CreateTextFile(strFull,true);           // Create a file.
+//			f = fso.GetFile(strFull);
+//			ts = f.OpenAsTextStream(ForWriting, TristateUseDefault);
+//			    
+//			var fullStr = x.toString();
+////    		document.body.innerText = fullStr;
+////    		return;
+//    		
+//		    var pos1 = fullStr.indexOf("</HEAD>");
+//		    subOne = fullStr.substring(0,pos1+7);	
+//		
+//			var pos = fullStr.indexOf("<STYLE type=text/css>");
+//			subTwo = fullStr.substr(pos)
+//		
+//		    	var pos2 = subTwo.indexOf("<TABLE cellSpacing=0 cellPadding=0 width=\"84%\" align=center border=0>");
+//			subThree = subTwo.substring(0, pos2 - 1);
+//			subThree = subThree + "<table border=\"0\" width=\"100%\" id=\"table1\"><tr><td><p align=\"right\"><font color=\"#3076AB\"><b>"
+//					   + strTitle + "</b></font></td></tr></table><hr color=\"#D1E5F3\" size=\"1\"><br>"
+//		
+//			subFour = subTwo.substr(pos2);
+
+//		 	fullStr = "<html>" + subOne + subThree + subFour + "</html>"	 	
+
+//		 	//特殊处理
+//		 	if(fullStr.indexOf("<!--begin-->") != -1)
+//		 	{
+//		 		var pos1 = fullStr.indexOf("<!--begin-->");
+//		 		var pos2 = fullStr.indexOf("endwrite");
+//		 		var sub1 = fullStr.substr(0, pos1);
+//		 		var sub2 = fullStr.substr(pos2+19);
+//		 		
+//		 		fullStr = sub1 + sub2;
+//		 	}
+//		 	
+//	 		ts.Write(fullStr);				   	
+//	 		ts.Close();
+//  	 	
+//	//	window.alert(strFull );
+//			// 拷贝img文件夹
+//			var fol;
+//			fol = new ActiveXObject("Scripting.FileSystemObject");
+//					
+//			// 得到报表配置文件路径
+//			
+//		
+//			
+//			var curtPath = unescape(document.location);
+//			
+//			var strlen = curtPath.length;
+//			var tempDir = curtPath.substr(8, strlen-8);
+//			var pos = tempDir.indexOf("report/");
+//			var installPath = tempDir.substring(0,pos+7);
+//			
+//				//window.alert(curtPath );
+//				
+//			for(;installPath.indexOf("/") != -1;)
+//			{
+//				installPath = installPath.replace("/","\\");
+//			}
+//			
+//			var fullConfigPath = installPath + "\\" + "img";
+//			var fullImgPath = strFolderPath + "\\" + "img"
+//			
+//			fol.CopyFolder(fullConfigPath, fullImgPath);
+//		
+//			fullConfigPath = installPath + "xslt";
+//			fullImgPath = strFolderPath + "\\" + "xslt"
+//			fol.CreateFolder(fullImgPath);
+//			
+//			
+//			
+//			fullConfigPath = installPath  + "flex";
+//			fullImgPath = strFolderPath + "\\" + "flex" 
+//			
+//			//window.alert(fullImgPath );
+//			 fol.CreateFolder(fullImgPath);
+//			fol.CopyFolder(fullConfigPath, fullImgPath);
+//		
+////			var path1 = fullConfigPath  + "\\" + "graph";
+////			var path2 = fullImgPath + "\\" + "graph";
+
+////			fol.CopyFolder(path1, path2);
+//			
+//			var strFin = "报表已经成功导出到 " + strFolderPath + " 文件夹下。";
+//			alert(strFin);
+//			
+//		}
+//		catch(ex)
+//		{
+//			//alert("报表导出失败！请确定是否选择正确的导出路径？");
+//			alert(ex.message) ;
+//		}
+//	
+
+//	//showSendingFinish();
+//	
+//	
+//	}
+//	
+//	else
+//	{
+//	  alert('JS文件中传入的参数DataFileid无效！') ;
+//	}
+
+//}
+
+
+function showSending(){
+	window.parent.middle.sending.style.visibility="visible";
+}
+
+function showSendingFinish(){
+	window.parent.middle.sending.style.visibility="hidden";
+}
+
+function exportAll()
+{
+	
+	//showSending();
+	
+	// 导出静态页面
+	window.parent.middle.focus();
+	var x; 
+	x = window.parent.middle.document.documentElement.innerHTML;
+	
+	var f, ts, s;
+	var ForReading = 1, ForWriting = 2, ForAppending = 8;
+	var TristateUseDefault = -2, TristateTrue = -1, TristateFalse = 0;
+
+	// 建立文件夹
+	var pos3 = sessionid.indexOf("/");
+	var fsoFolder = new ActiveXObject("Scripting.FileSystemObject");
+	var strFolderPath = strPath + sessionid.substr(pos3+1); 
+
+	var d;
+	d = new Date();
+		try
+		{	
+		   
+		   if(!fsoFolder.folderexists(strPath))
+			{
+			     var patharray = strPath.split("\\") ;
+			     var pathstr ="" ;
+			     for (var i=0 ;i<patharray.length ;i++)
+			     {
+			       if (i==0) 
+			       {
+			       pathstr=patharray[i]  ;
+			       }
+			       else
+			       {
+			         pathstr=pathstr +"\\"+patharray[i];
+			       } 
+			       if (!fsoFolder.folderexists(pathstr)) 
+			       
+			        {
+			          fsoFolder.CreateFolder(pathstr);
+			        }
+			       
+			       
+			     }
+			     
+				// fsoFolder.CreateFolder(strPath);
+			}
+		
+		
+			if(fsoFolder.folderexists(strFolderPath))
+			{
+				//fsoFolder.DeleteFolder(strFolderPath);
+				strFolderPath = strFolderPath + "_" + Math.round(Math.random()* 1000);
+			}
+			
+			fsoFolder.CreateFolder(strFolderPath);
+						
+			// 拷贝Report文件夹
+			var fol;
+			fol = new ActiveXObject("Scripting.FileSystemObject");
+					
+			// 得到报表配置文件路径
+			var curtPath = unescape(document.location);
+
+			
+			var strlen = curtPath.length;
+			var tempDir = curtPath.substr(8, strlen-8);
+
+			var pos = tempDir.indexOf("report/");
+			var installPath = tempDir.substring(0,pos+6);
+			
+			for(;installPath.indexOf("/") != -1;)
+			{
+				installPath = installPath.replace("/","\\");
+			}
+			fol.CopyFolder(installPath, strFolderPath + "\\data");
+		
+			var destFile = strFolderPath + "\\data\\bottom.html";
+			var sourceFile = strFolderPath + "\\data\\bottomExported.html";
+			
+			var fb;
+			fb = new ActiveXObject("Scripting.FileSystemObject");
+			try{
+			fb.DeleteFile(destFile);
+			}catch(e){}
+			fb.MoveFile(sourceFile, destFile);
+			
+			sourceFile = strFolderPath + "\\data\\indexExported.html";
+			destFile = strFolderPath + "\\index.html";
+			fb.MoveFile(sourceFile, destFile);
+			
+			var strFin = "报表已经成功导出到 " + strFolderPath + " 文件夹下。";
+			alert(strFin);
+			
+		}
+		catch(ex)
+		{
+			alert("报表导出失败！请确定是否选择正确的导出路径？" + ex.message);
+		}
+	
+
+	//showSendingFinish();
+
+}
+
+// -->
+</script>
+<!-- css styles -->
+				<style type="text/css">
+				td,p,li {font-size:12px;font-family: 宋体;}
+				span {color: #4589C0;}
+				A:link {text-decoration:none;}
+				A:visited {text-decoration:none;}
+				A:active {text-decoration:none;}
+				A:hover {text-decoration:none;}
+				</style>
+				<!-- End of css styles -->
+
+</head>
+
+<body topmargin="0" leftmargin="0" rightmargin="0" bottommargin="0" marginwidth="0" marginheight="0" oncontextmenu="return false">
+
+<table border="0" width="100%" id="table1" height="39" background="img/03bottom_bg.gif" cellspacing="0" cellpadding="0">
+	<tr>
+		<td width="354" align="right">
+		<img border="0" id="img1" src="img/03bottom_bu1.gif"  width="95" height="27" alt="打印此页" onmouseover="FP_swapImg(1,0,/*id*/'img1',/*url*/'img/03bottom_bu1b.gif');this.style.cursor='hand'" onmouseout="FP_swapImg(0,0,/*id*/'img1',/*url*/'img/03bottom_bu1.gif');this.style.cursor='default'" onmousedown="FP_swapImg(1,0,/*id*/'img1',/*url*/'img/03bottom_bu1b.gif')" onmouseup="FP_swapImg(0,0,/*id*/'img1',/*url*/'img/03bottom_bu1b.gif')" fp-style="fp-btn: Border Bottom 1; fp-font" fp-title="打印此页" onclick="javascript:printPage()" >
+		<img border="0" id="img2" src="img/03bottom_bu2.gif"  width="104" height="27" alt="当前报表导出" onmouseover="FP_swapImg(1,0,/*id*/'img2',/*url*/'img/03bottom_bu2b.gif');this.style.cursor='hand'" onmouseout="FP_swapImg(0,0,/*id*/'img2',/*url*/'img/03bottom_bu2.gif');this.style.cursor='default'" onmousedown="FP_swapImg(1,0,/*id*/'img2',/*url*/'img/03bottom_bu2b.gif')" onmouseup="FP_swapImg(0,0,/*id*/'img2',/*url*/'img/03bottom_bu2b.gif')" fp-style="fp-btn: Border Bottom 1; fp-font" fp-title="打印全部" onclick="javascript:exportCurrent(1)">
+		<img border="0" id="img5" src="img/03bottom_bu5.gif"  width="104" height="27" alt="报表整体导出" onmouseover="FP_swapImg(1,0,/*id*/'img5',/*url*/'img/03bottom_bu5b.gif');this.style.cursor='hand'" onmouseout="FP_swapImg(0,0,/*id*/'img5',/*url*/'img/03bottom_bu5.gif');this.style.cursor='default'" onmousedown="FP_swapImg(1,0,/*id*/'img5',/*url*/'img/03bottom_bu5b.gif')" onmouseup="FP_swapImg(0,0,/*id*/'img5',/*url*/'img/03bottom_bu5b.gif')" fp-style="fp-btn: Border Bottom 1; fp-font" fp-title="打印全部" onclick="javascript:exportCurrent(0)">
+		</td>
+		<td width="275">
+		</td>
+		<!--<td width="229">
+		<a title="上一页" href="javascript:history.back();">
+		<img border="0" id="img3" src="img/03bottom_bu3.gif"  width="76" height="27" alt="上一页" onmouseover="FP_swapImg(1,0,/*id*/'img3',/*url*/'img/03bottom_bu3b.gif')" onmouseout="FP_swapImg(0,0,/*id*/'img3',/*url*/'img/03bottom_bu3.gif')" onmousedown="FP_swapImg(1,0,/*id*/'img3',/*url*/'img/03bottom_bu3b.gif')" onmouseup="FP_swapImg(0,0,/*id*/'img3',/*url*/'img/03bottom_bu3b.gif')" fp-style="fp-btn: Border Bottom 1; fp-font" fp-title="上一页"></a><a href=javascript:history.back();>
+		</a>
+		<a title="下一页" href="javascript:history.forward();">
+		<img border="0" id="img4" src="img/03bottom_bu4.gif"  width="73" height="27" alt="下一页" onmouseover="FP_swapImg(1,0,/*id*/'img4',/*url*/'img/03bottom_bu4b.gif')" onmouseout="FP_swapImg(0,0,/*id*/'img4',/*url*/'img/03bottom_bu4.gif')" onmousedown="FP_swapImg(1,0,/*id*/'img4',/*url*/'img/03bottom_bu4b.gif')" onmouseup="FP_swapImg(0,0,/*id*/'img4',/*url*/'img/03bottom_bu4b.gif')" fp-style="fp-btn: Border Bottom 1; fp-font" fp-title="下一页"></a><a href=javascript:history.forward();>
+		</td>-->
+		</a>
+	</tr>
+</table>

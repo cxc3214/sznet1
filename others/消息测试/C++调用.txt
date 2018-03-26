@@ -1,0 +1,51 @@
+
+		RtlZeroMemory(&m_Overlapped,sizeof(m_Overlapped));
+		m_Overlapped.IoType=IORead;
+		m_Overlapped.ClientSocket=this;
+
+		m_dwCurrentLen+=dwBytesTransfer;
+		if(m_dwCurrentLen < m_dwBufferLen)
+		{
+			buf.buf=(PCHAR)m_xBuffer+m_dwCurrentLen;
+			buf.len=m_dwBufferLen-m_dwCurrentLen;
+			WSARecv(m_hSocket,&buf,1,&dwBytesRecv,&dwFlags,&m_Overlapped.Overlapped,NULL);
+		}
+		else if(m_dwCurrentLen==m_dwBufferLen)
+		{
+			if(m_RecvPktHead)
+			{
+				int iii = REQUEST_QUERY_SERVER_CONFIG;
+				LPINTER_PROTO_HEAD PacketHead=(LPINTER_PROTO_HEAD)m_Buffer;
+				if(PacketHead->dwDataLen==0)//无数据包
+				{
+					m_dwCurrentLen=0;
+					m_xBuffer=m_Buffer;
+					m_dwBufferLen=sizeof(INTER_PROTO_HEAD);
+					m_RecvPktHead=TRUE;
+					buf.buf=(PCHAR)m_Buffer;
+					buf.len=m_dwBufferLen;
+					OnDataArrival(PacketHead->dwProtoType,PacketHead->dwCommandId,PacketHead->dwClientAddr);
+				}
+				else
+				{
+					m_dwCurrentLen=0;
+					m_dwBufferLen=PacketHead->dwDataLen;
+					m_dwClientAddr=PacketHead->dwClientAddr;
+					m_dwProtoType=PacketHead->dwProtoType;
+					m_dwCommandId=PacketHead->dwCommandId;
+					m_RecvPktHead=FALSE;
+					if(m_dwBufferLen <= 4096)
+						m_xBuffer=m_Buffer;
+					else
+					{
+						m_xBuffer=(PUCHAR)LocalAlloc(LPTR,m_dwBufferLen);
+						if(m_xBuffer==NULL)
+						{
+							closesocket(m_hSocket);
+							m_hSocket=INVALID_SOCKET;
+							return;
+						}
+					}
+					buf.buf=(PCHAR)m_xBuffer;
+					buf.len=m_dwBufferLen;
+				}

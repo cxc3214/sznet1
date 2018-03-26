@@ -1,0 +1,28 @@
+<script src="${ctx}/inc/project/system/3/pwd.js" type="text/javascript"></script>
+
+
+<div class="easyui-layout" data-options="border:true,fit:true">
+	<div data-options="region:'center',border:false">
+		<div class="container-fluid" style="padding:10px">
+	      	<form id="editform" method="post" class="form-horizontal col-md-9 col-md-offset-1" role="form">
+	      	<input type="hidden" name="id" />
+       		<@c.formgroup id="c-password" label="密码">
+       			<@c.forminput type="password"  id="c-password" name="password" />
+       		</@c.formgroup>
+	      	 <@c.formgroup id="c-password1" label="确认密码">
+       			<@c.forminput type="password"  id="c-password1" name="password1"  validType="equals['c-password','id']" invalidMessage="两次输入的密码不匹配"/>
+       		</@c.formgroup>
+	      	</form>
+       	</div>	
+	</div>	
+	<div data-options="region:'south',border:false" style="height:42px;">
+		<div style="background:#fafafa;padding:5px;text-align:center;border-top:1px solid #ddd;">
+		<button id="btnsave" id="btn-save" type="button" style="align:center" class="btn btn-default btn-sm">
+		 	<span class="glyphicon glyphicon-save"></span> 
+		  设置</button>
+		  <button id="btncancel" id="btn-save" type="button" class="btn btn-default btn-sm">
+		 	<span class="glyphicon glyphicon-floppy-remove"></span> 
+		  取消</button>
+		  </div>
+	</div>
+</div>

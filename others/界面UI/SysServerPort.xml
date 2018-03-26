@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<config>
+    <port command_port="4590" data_port="4578" DSN="natogo" Database="IntegrityGuard" Description="IntegrityGuard ODBC Database" IP="127.0.0.1,1033" SqlName="sa" SqlPass="sa"/>
+</config>

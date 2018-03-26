@@ -1,0 +1,59 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>主机扫描报告</title>		
+</head>
+<body>
+<table BORDER="1" CELLSPACING="0" CELLPADDING="0">
+<tr>
+<script src="ReportTpl.js" language="javascript" >
+</script>
+
+<script language="javascript">  
+//try
+{
+// Load XML 
+
+   var sessionid =DataFileid 
+   var strALL=strTpl 
+   var userdesc =SecEResult
+   
+   
+   
+var xml = new ActiveXObject("Microsoft.XMLDOM")
+xml.async = false
+//xml.load(sessionid)
+
+var xmlFileName ="data/Report.xml"
+xml.load(xmlFileName)
+
+// Load the XSL
+var objXSLT = new ActiveXObject("MSXML2.FreeThreadedDomDocument");
+objXSLT.async = false
+objXSLT.load("xslt/ReportInfo.xslt")
+
+// create a compiled XSL-object
+var objCompiled = new ActiveXObject("MSXML2.XSLTemplate");
+objCompiled.stylesheet = objXSLT.documentElement;
+	
+// create XSL-processor
+var objXSLProc = objCompiled.createProcessor();
+objXSLProc.input = xml
+
+
+// transform
+objXSLProc.transform();
+
+// display
+document.write(objXSLProc.output);
+}
+//catch(ex)
+//{
+//	alert("数据库异常，请再试！");
+//}
+
+</script>
+</tr>
+</table>
+</body>
+</html>

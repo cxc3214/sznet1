@@ -1,0 +1,32 @@
+<@c.html> 
+<@c.head title="登录">
+	<script src="${ctx}/inc/lib/jquery-extensions/jeasyui-extensions/jeasyui.extensions.js" type="text/javascript"></script>
+    <script src="${ctx}/inc/lib/jquery-extensions/jeasyui-extensions/jeasyui.extensions.validatebox.js" type="text/javascript"></script>
+	<script src="${ctx}/inc/lib/jquery-extensions/jeasyui-extensions/jeasyui.extensions.form.js" type="text/javascript"></script>
+	
+<script src="${ctx}/inc/project/login/login.js" type="text/javascript"></script>
+<link href="${ctx}/inc/css/login.css" rel="stylesheet" type="text/css" />
+</@c.head>
+<@c.anybody>
+<div class="container">
+	<form id="login-form" class="form-signin" role="form" method="post" >
+			<div id="errordiv"  style="display: none">
+			
+				<div class="alert alert-warning alert-dismissable">			  		
+			  		<strong>提示：</strong> <span></span>
+				</div>
+
+			</div>
+		<h2 class="form-signin-heading">请登录...</h2>
+		<input type="text" name="username" class="form-control easyui-validatebox" placeholder="用户名" required autofocus> 
+			<input type="password" name="password" class="form-control easyui-validatebox"	placeholder="密码" required> 
+			
+<!-- 			<label class="checkbox">
+			 <input	type="checkbox" value="remember-me"> 记住用户名
+		    </label> -->
+		<button id="btn-login" class="btn btn-lg btn-primary btn-block" type="button">登录</button>
+	</form>
+</div>
+<!-- /container -->
+
+</@c.anybody > </@c.html>
